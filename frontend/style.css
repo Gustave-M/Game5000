@@ -1,0 +1,230 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: sans-serif;
+  background-image: url("assets/test1.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#game-area {
+  position: relative;
+  width: 1000px;
+  height: 800px;
+  transform: scale(calc(min(100vw / 1000, 100vh / 800)));
+  transform-origin: top left;
+}
+.seat {
+  position: absolute;
+  width: 10%;
+  height: 10%;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid #ccc;
+  border-radius: 8px;
+
+  display: flex;
+  flex-direction: column;  /* empile verticalement */
+  justify-content: center;
+  align-items: center;
+
+  padding: 5px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.seat .username {
+  font-weight: bold;
+  font-size: 1em;
+  margin-bottom: 2px;     /* petit espace avec le score */
+  text-align: center;
+
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.seat .score {
+  font-size: 0.85em;
+  color: #444;
+  text-align: center;
+}
+
+
+/* Variante : siège actif */
+.seat--active {
+  background: linear-gradient(135deg, gold, orange);
+  color: #222;
+  font-weight: bold;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+}
+
+.seat .username--changeable {
+  cursor: pointer; /* curseur main */
+}
+
+.seat .username--changeable:hover {
+  text-decoration: underline;
+}
+
+#turn-info {
+  position: absolute;
+  width: 15%;              /* largeur fixe (meilleure lisibilité) */
+  min-height: 8%;         /* hauteur minimale */
+  background: rgba(255, 255, 255, 0.85); /* fond blanc semi-transp */
+  border: 1px solid rgba(0, 0, 0, 0.2);  /* bordure douce */
+  border-radius: 12px;       /* coins arrondis */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15); /* ombre légère */
+
+  display: flex;
+  flex-direction: column;    /* empile les lignes verticalement */
+  justify-content: center;   /* centre verticalement */
+  align-items: center;       /* centre horizontalement */
+  gap: 6px;                  /* espace entre les lignes */
+
+  padding: 15px;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  font-family: "Segoe UI", sans-serif;
+  font-size: 0.8rem;
+  color: #333;
+  text-align: center;
+}
+
+.seat .user .username :hover {
+  text-decoration: underline;
+}
+
+.seat--active{
+  background-color: gold;
+}
+
+.seat--empty {
+  background: rgba(240, 240, 240, 0.7);
+  border: 1px dashed rgba(0, 0, 0, 0.2);
+  color: #aaa;
+  font-style: italic;
+}
+
+
+#board {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* centre exact */
+  
+  background-image: url("assets/test2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  display: grid;
+  width: 70%;   /* 60% de game-area */
+  height: 60%;  /* 80% de game-area */
+  gap: 10%;
+
+  justify-items: center;
+  align-items: center;
+  border: 5px solid #000000;
+  border-radius: 10%;
+}
+@media (orientation: portrait) {
+  #board {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
+}
+@media (orientation: landscape) {
+  #board {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
+}
+
+/* images de dé : https://game-icons.net/tags/dice.html*/
+
+.dice {
+  background-color: white; /* visible avant clic */
+  border: 2px solid black;
+  border-radius: 10px;
+  background-size: cover;   /* l’image occupe tout le dé */
+  background-position: center;
+  cursor: pointer;
+  width: 50%;
+  aspect-ratio: 1 / 1;
+}
+.dice:hover {
+  border: 3px solid #0000FF; /* bordure bleue au survol */
+}
+
+
+.button {
+  background-color: #CC0000;
+  border: none;
+  color: white;
+  padding: 1vw 2vh;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 12px;
+}
+
+.button:hover {
+  transform: scale(1.05);
+  transition: transform 0.1s;
+}
+
+#actions {
+  position: absolute;
+  bottom: 12.5%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(4, 1fr);
+  justify-items: center;
+  align-items: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
