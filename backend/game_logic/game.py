@@ -1,5 +1,4 @@
 
-from email import message
 from flask import request
 from flask_socketio import SocketIO, emit
 
