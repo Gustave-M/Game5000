@@ -1,7 +1,5 @@
 
 from typing import Self, List, Dict, Tuple
-import numpy as np
-
 
 class GameLogic:
     def __init__(self:Self)->None:

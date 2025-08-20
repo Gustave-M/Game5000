@@ -1,6 +1,5 @@
 
 from typing import Self
-import numpy as np
 from random import randint
 
 class Dice():
