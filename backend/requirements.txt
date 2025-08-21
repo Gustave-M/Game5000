@@ -1,2 +1,3 @@
 Flask
 Flask-SocketIO
+eventlet #for async mode (nécéssaire pour la production, Werkzeug n'est pas opti)

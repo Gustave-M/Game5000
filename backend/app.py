@@ -29,6 +29,5 @@ socketio.on_event('roll', game.handle_action_roll)
 socketio.on_event('valid', game.handle_action_valid)
 socketio.on_event('give-up', game.handle_action_give_up)
 
-if __name__ == '__main__':
-    socketio.run(app, host='0.0.0.0', port=5000)
-
+if __name__ == "__main__":
+    socketio.run(app, host="0.0.0.0", port=5000)
