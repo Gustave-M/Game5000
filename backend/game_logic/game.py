@@ -8,6 +8,7 @@ from game_logic.gamelogic import GameLogic
 
 class Game:
     def __init__(self):
+        """Initialize a new game instance with empty seats and reset state."""
         self.players = {}
         self.max_seats = 7
         self.seats = [None] * self.max_seats
@@ -57,24 +58,23 @@ class Game:
                     "isActive": False,
                     "isEmpty": True
                 }, room=requester_sid)
-                #self.get_player_info(requester_sid, sid)
 
             self.seats = [seat if seat != sid else None for seat in self.seats]
             del self.players[sid]
 
     def get_player_info(self, requester_sid, target_sid):
         # C'est possible de faire ça proprement, avec des None pour requester et target qui permetterais de faire des envoie automatique, mais là flem        if requester_sid in self.players and target_sid in self.players:
-            result = {
-                "seatIndex": (self.seats.index(target_sid) - self.seats.index(requester_sid))%self.max_seats,
-                "username": self.players[target_sid].username,
-                "score": self.players[target_sid].score,
-                "isActive": False,
-                "isEmpty": False
-            }
-            if self.seats[self.seat_to_play] == target_sid:
-                result["isActive"] = True
-            print(result)
-            emit('update-seat', result, room=requester_sid)
+        result = {
+            "seatIndex": (self.seats.index(target_sid) - self.seats.index(requester_sid))%self.max_seats,
+            "username": self.players[target_sid].username,
+            "score": self.players[target_sid].score,
+            "isActive": False,
+            "isEmpty": False
+        }
+        if self.seats[self.seat_to_play] == target_sid:
+            result["isActive"] = True
+        print(result)
+        emit('update-seat', result, room=requester_sid)
 
     def next_turn(self):
         assert len(self.seats) == self.max_seats, "Seats list is not initialized correctly."
@@ -191,33 +191,6 @@ class Game:
             else:
                 emit('show_alert', {'message': message}, room=sid)
 
-
-            ### A supprimer ce qui est en dessous
-
-
-            """gain, hand_after_gain = self.game_logic.get_gain_and_clean_hand(self.game_logic.used_hand)
-            print("Max gain :", gain)
-            print("Hand :",self.game_logic.hand)
-            print("Used hand :", self.game_logic.used_hand)
-            print("Hand after gain :", hand_after_gain)
-
-            if self.game_logic.is_equal(self.game_logic.used_hand, hand_after_gain) and (not self.game_logic.is_empty(self.game_logic.used_hand) or self.game_logic.is_empty(self.game_logic.hand)):
-                if self.game_logic.is_equal(self.game_logic.hand, hand_after_gain):
-                    emit('show_alert', {'message': 'Main pleine ;)'}, room=sid)
-
-                for dice in self.dices:
-                    if self.game_logic.is_equal(self.game_logic.hand, hand_after_gain): # full hand
-                        dice.reset()
-                    if dice.state == "selected" or dice.state == "waiting":
-                        dice.roll()
-                    else:
-                        dice.lock()
-                    self.gain += gain
-                    #self.have_to_play = self.game_logic.get_have_to_play_after(self.game_logic.hand)
-                    emit('update-dice', dice.toJson(), room=list(self.players.keys()))
-            else:
-                emit('show_alert', {'message': 'Mauvais sélection, coup illégal'}, room=request.sid)"""
-        
     def handle_action_give_up(self, data:None):
         sid = request.sid
 

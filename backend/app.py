@@ -1,8 +1,6 @@
+
 from flask_socketio import SocketIO, emit
 from flask import request, Flask, send_from_directory
-
-#from handlers import diceHandler
-#from handlers import playerHandler
 
 from game_logic.game import Game
 from game_logic.player import Player
