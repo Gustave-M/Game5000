@@ -2,6 +2,11 @@
 from typing import Self, List, Dict, Tuple
 
 class GameLogic:
+    """
+    Class to manage the game logic, the score or a hand (it's validity),
+    The convertion of dices to exploitable hands (intern)
+    Others informations about the game state and rules
+    """
     def __init__(self:Self)->None:
         self.score = 0
         self.hand = {}

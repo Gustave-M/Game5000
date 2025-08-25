@@ -3,6 +3,10 @@ from typing import Self
 from random import randint
 
 class Dice():
+    """
+    This is the representation of a dices, 6 faces/values and some states : waiting, selected, unselected, fixed
+    A dice can also be locked
+    """
     def __init__(self, id:int):
         self.ID = id
         self.value = 0

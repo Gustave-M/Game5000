@@ -2,6 +2,10 @@
 
 
 class Player():
+    """
+    The class represent a player in the game
+    They must handle some DB interactions in the futur
+    """
     def __init__(self, sid, username):
         self.SID = sid
         self.username = username

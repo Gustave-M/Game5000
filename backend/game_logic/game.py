@@ -4,9 +4,15 @@ from flask_socketio import SocketIO, emit
 
 from game_logic.player import Player, EmptyPlayer
 from game_logic.dice import Dice
-from game_logic.gamelogic import GameLogic
+from game_logic.game_logic import GameLogic
 
 class Game:
+    """
+    Class to manage the game evolution, the request for the front end values
+    The is an interface between request and intern dices
+    The game must no handle the players connexion
+    The seat gestion must be handled by the room class
+    """
     def __init__(self):
         """Initialize a new game instance with empty seats and reset state."""
         self.players = {}

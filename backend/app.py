@@ -1,16 +1,20 @@
 
 from flask_socketio import SocketIO, emit
-from flask import request, Flask, send_from_directory
+from flask import request, Flask, send_from_directory, session # session est propre à chaque client ...
+import uuid
 
 from game_logic.game import Game
 from game_logic.player import Player
 
 app = Flask(__name__, static_folder='../frontend', static_url_path='/')
+app.config['SECRET_KEY'] = uuid.uuid4().hex
 socketio = SocketIO(app, cors_allowed_origins="*")
 
 game = Game()
 
 players = {}
+
+connected_players = {}
 
 @app.route('/')
 def index():
@@ -21,7 +25,7 @@ socketio.on_event('disconnect', game.remove_player)
 
 socketio.on_event('dice-click', game.handle_dice_click)
 
-socketio.on_event('change-username', game.handle_change_username)
+
 socketio.on_event('reset-states', game.handle_action_reset)
 socketio.on_event('roll', game.handle_action_roll)
 socketio.on_event('valid', game.handle_action_valid)

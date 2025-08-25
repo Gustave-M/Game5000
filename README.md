@@ -41,4 +41,3 @@ Special Cases
 # Illustrations
 ![Game Screenshot](screenshots/screenshot1.png)
 
-
